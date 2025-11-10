@@ -21,4 +21,10 @@ Avant toute action :
      - Rechercher docs externes + cas similaires (Reddit, Stack Overflow, GitHub)
      - Si résolu après plusieurs changements : rollback et isoler
      - Expliquer cause racine + source dans commit
+9. Deepsearch - Exhaustivité et certitude :
+   • Déclencheur : mot-clé "deepsearch"
+   • Faire 100% le tour de la question (temps illimité)
+   • Certitude ≥90% obligatoire
+   • Si <90% : expliciter incertitudes + demander confirmation
+   • Sources contextuelles : code, docs, CONTEXT.md, tasks, externe
 
