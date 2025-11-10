@@ -241,7 +241,6 @@ model Mover {
   // Relations
   pricingGrids      PricingGrid[]
   quotes            Quote[]       @relation("MoverQuotes")
-  bookings          Booking[]
   users             User[]        // Comptes partner de ce déménageur (1:n)
   emailLogs         EmailLog[]
   
@@ -479,7 +478,6 @@ model Booking {
   
   // Relations
   payments          Payment[]     // 1:n (acompte + éventuels autres paiements)
-  movers            Mover[]       // Relation inverse pour résoudre l'ambiguïté
   
   @@index([status])
   @@index([confirmedAt])  // Rapports par période
