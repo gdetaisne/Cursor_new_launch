@@ -83,7 +83,7 @@
   .glass {
     @apply relative;
     @apply bg-white/[0.72] dark:bg-[rgb(30,30,30)]/[0.68];
-    @apply backdrop-blur-xl backdrop-saturate-150;
+    @apply backdrop-blur-xl;
     @apply border border-gray-200/40 dark:border-gray-700/30;
     @apply shadow-glass-light dark:shadow-glass-dark;
     @apply transition-all duration-300 ease-apple;
