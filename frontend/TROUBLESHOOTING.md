@@ -56,7 +56,54 @@ pnpm add tailwindcss@3.4.17
 
 ---
 
-### Problème 3 : Cache Vite persistant
+### Problème 3 : "React is not defined"
+
+**Symptôme** :
+```
+Uncaught ReferenceError: React is not defined
+  at App (App.tsx:6:3)
+```
+
+**Cause** :
+- `tsconfig.json` manque `"jsx": "react-jsx"` (nécessaire pour React 17+)
+- `vite.config.ts` n'existe pas ou ne contient pas le plugin React
+- `@vitejs/plugin-react` n'est pas installé
+
+**Solution** :
+```bash
+# 1. Installer le plugin React pour Vite
+pnpm add -D @vitejs/plugin-react
+
+# 2. Créer vite.config.ts
+cat > vite.config.ts << 'EOF'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173,
+    strictPort: true,
+  },
+});
+EOF
+
+# 3. Ajouter "jsx": "react-jsx" dans tsconfig.json
+# (dans la section compilerOptions)
+
+# 4. Redémarrer Vite
+pkill -f "vite"
+pnpm dev
+```
+
+**Prévention future** :
+✅ Toujours vérifier que `tsconfig.json` contient `"jsx": "react-jsx"`  
+✅ Toujours créer `vite.config.ts` avec le plugin React  
+✅ Vérifier que `@vitejs/plugin-react` est installé dans devDependencies
+
+---
+
+### Problème 4 : Cache Vite persistant
 
 **Symptôme** :
 - Après correction de `postcss.config.js`, l'erreur persiste
