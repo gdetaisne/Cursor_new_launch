@@ -1,0 +1,35 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AdminLayout } from '../components/layout/AdminLayout';
+import { DashboardPage } from '../pages/DashboardPage';
+import { FoldersPage } from '../pages/FoldersPage';
+import { QuotesPage } from '../pages/QuotesPage';
+import { MoversPage } from '../pages/MoversPage';
+
+export function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Redirect root to /admin */}
+        <Route path="/" element={<Navigate to="/admin" replace />} />
+
+        {/* Admin routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="folders" element={<FoldersPage />} />
+          <Route path="quotes" element={<QuotesPage />} />
+          <Route path="movers" element={<MoversPage />} />
+          <Route path="clients" element={<div>Clients (Coming soon)</div>} />
+          <Route path="leads" element={<div>Leads (Coming soon)</div>} />
+          <Route path="payments" element={<div>Paiements (Coming soon)</div>} />
+          <Route path="logs" element={<div>Logs (Coming soon)</div>} />
+          <Route path="emails" element={<div>Emails (Coming soon)</div>} />
+          <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
+        </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<div>404 - Page not found</div>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
