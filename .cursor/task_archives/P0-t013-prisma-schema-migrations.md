@@ -334,7 +334,7 @@ main()
 - [x] Seed exécuté sans erreur (5 movers, 12 grids, 10 quotes, etc.) ✅
 - [x] Tests connexion passent (5/5) ✅
 
-**Statut : ✅ COMPLÉTÉE — Base de données opérationnelle**
+**Statut : ✅ Terminé — Base de données opérationnelle**
 
 La base de données Moverz est maintenant complètement opérationnelle :
 - 13 tables (12 schema + _prisma_migrations)
