@@ -12,8 +12,9 @@ import { errorHandler } from './middlewares/errorHandler.js';
 export function createApp(): Express {
   const app = express();
 
-  // Security middleware
-  app.use(helmet());
+  // Security middleware (POC-level)
+  app.use(helmet()); // Secure HTTP headers (CSP, XSS, clickjacking, etc.)
+  // Note: XSS protection via Zod validation on all inputs (already implemented)
 
   // CORS
   app.use(
@@ -23,10 +24,10 @@ export function createApp(): Express {
     })
   );
 
-  // Rate limiting
+  // Rate limiting (permissive for POC)
   const limiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 1 minute
-    max: 100, // Max 100 requests per minute per IP
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // Max 1000 requests per 15min per IP (permissive for dev/POC)
     message: 'Too many requests from this IP, please try again later',
     standardHeaders: true,
     legacyHeaders: false,
@@ -34,8 +35,8 @@ export function createApp(): Express {
   app.use('/api/', limiter);
 
   // Body parsing
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json({ limit: '10mb' })); // Limit payload size
+  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
   // Logging
   if (process.env.NODE_ENV === 'development') {
