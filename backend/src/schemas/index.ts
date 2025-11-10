@@ -6,4 +6,5 @@ export * from './folder.schema.js';
 export * from './mover.schema.js';
 export * from './quote.schema.js';
 export * from './payment.schema.js';
+export * from './booking.schema.js';
 
