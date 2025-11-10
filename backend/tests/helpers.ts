@@ -127,9 +127,70 @@ export async function createTestQuote(folderId: string, moverId: string, overrid
 
 /**
  * Clean up test data (delete by email pattern)
+ * Must respect FK constraints (delete children first)
  */
 export async function cleanupTestData() {
-  // Delete test clients (cascade will delete folders, etc.)
+  // 1. Delete bookings first (has payments as child)
+  await prisma.payment.deleteMany({
+    where: {
+      booking: {
+        folder: {
+          client: {
+            email: {
+              contains: '@test.local',
+            },
+          },
+        },
+      },
+    },
+  });
+
+  await prisma.booking.deleteMany({
+    where: {
+      folder: {
+        client: {
+          email: {
+            contains: '@test.local',
+          },
+        },
+      },
+    },
+  });
+
+  // 2. Delete quotes
+  await prisma.quote.deleteMany({
+    where: {
+      folder: {
+        client: {
+          email: {
+            contains: '@test.local',
+          },
+        },
+      },
+    },
+  });
+
+  // 3. Delete folders
+  await prisma.folder.deleteMany({
+    where: {
+      client: {
+        email: {
+          contains: '@test.local',
+        },
+      },
+    },
+  });
+
+  // 4. Delete leads
+  await prisma.lead.deleteMany({
+    where: {
+      email: {
+        contains: '@test.local',
+      },
+    },
+  });
+
+  // 5. Delete clients
   await prisma.client.deleteMany({
     where: {
       email: {
@@ -138,17 +199,30 @@ export async function cleanupTestData() {
     },
   });
 
-  // Delete test movers
-  await prisma.mover.deleteMany({
+  // 6. Delete pricing grids before movers
+  await prisma.pricingGrid.deleteMany({
     where: {
-      email: {
-        contains: '@test.local',
+      mover: {
+        email: {
+          contains: '@test.local',
+        },
       },
     },
   });
 
-  // Delete test leads
-  await prisma.lead.deleteMany({
+  // 7. Delete mover users before movers
+  await prisma.user.deleteMany({
+    where: {
+      mover: {
+        email: {
+          contains: '@test.local',
+        },
+      },
+    },
+  });
+
+  // 8. Delete movers
+  await prisma.mover.deleteMany({
     where: {
       email: {
         contains: '@test.local',
