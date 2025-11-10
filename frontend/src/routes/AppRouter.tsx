@@ -6,6 +6,7 @@ import { FolderDetailPage } from '../pages/FolderDetailPage';
 import { QuotesPage } from '../pages/QuotesPage';
 import { QuoteDetailPage } from '../pages/QuoteDetailPage';
 import { MoversPage } from '../pages/MoversPage';
+import { MoverDetailPage } from '../pages/MoverDetailPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
 
 export function AppRouter() {
@@ -23,6 +24,7 @@ export function AppRouter() {
           <Route path="quotes" element={<QuotesPage />} />
           <Route path="quotes/:quoteId" element={<QuoteDetailPage />} />
           <Route path="movers" element={<MoversPage />} />
+          <Route path="movers/:moverId" element={<MoverDetailPage />} />
           <Route path="clients" element={<div>Clients (Coming soon)</div>} />
           <Route path="leads" element={<div>Leads (Coming soon)</div>} />
           <Route path="payments" element={<div>Paiements (Coming soon)</div>} />
