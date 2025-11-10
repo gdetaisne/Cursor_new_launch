@@ -78,7 +78,8 @@ Nouvelle section détaillée expliquant :
 
 ## Commits liés
 
-- (à venir) `t003: Add Rule 8 - Methodical and traceable debugging`
+- [486016c] `t003: Add Rule 8 - Methodical and traceable debugging` (2025-11-10 09:06)
+- (pending) `t003: Add debug section to TASKS_RULES`
 
 ## Notes futures
 
