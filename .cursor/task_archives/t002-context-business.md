@@ -90,7 +90,7 @@ Cette documentation servira de référence pour toutes les décisions techniques
 
 ## Commits liés
 
-- (à venir) `t002: Add business context documentation`
+- [a6551c7] `t002: Add business context documentation` (2025-11-10 08:57)
 
 ## Notes futures
 

@@ -54,7 +54,8 @@ else
 fi
 
 git add -A
-COMMIT_HASH=$(git commit -m "$COMMIT_MSG" --format="%h" | grep -o '\[main [a-f0-9]*\]' | grep -o '[a-f0-9]*$')
+git commit -m "$COMMIT_MSG"
+COMMIT_HASH=$(git log -1 --format="%h")
 
 echo -e "${GREEN}✅ Commit créé: ${COMMIT_HASH}${NC}"
 
@@ -87,7 +88,8 @@ if [ -f "$COMMIT_JOURNAL" ]; then
     
     # Commit de la mise à jour du journal
     git add "$COMMIT_JOURNAL"
-    JOURNAL_HASH=$(git commit -m "${TASK_ID}: Update commit journal with archiving entry" --format="%h" | grep -o '\[main [a-f0-9]*\]' | grep -o '[a-f0-9]*$')
+    git commit -m "${TASK_ID}: Update commit journal with archiving entry"
+    JOURNAL_HASH=$(git log -1 --format="%h")
     
     echo -e "${GREEN}✅ Journal mis à jour: ${JOURNAL_HASH}${NC}"
 fi
