@@ -4,14 +4,14 @@
 
 ```
 Back_Office/
-├── .cursor/                        # Système de tasks et traçabilité
-│   ├── README.md                   # Documentation structure .cursor
-│   ├── tasks/                      # Tasks actives
-│   │   ├── tXXX-type-details.md   # Spec de task
-│   │   └── commits/                # Historique des commits
-│   │       └── tXXX.md            # Journal commits par task
-│   └── task_archives/              # Tasks terminées
-│       └── tXXX-type-details.md   # Task archivée
+├── .cursor/                           # Système de tasks et traçabilité
+│   ├── README.md                      # Documentation structure .cursor
+│   ├── tasks/                         # Tasks actives
+│   │   ├── PX-tXXX-type-details.md   # Spec de task (P0/P1/P2)
+│   │   └── commits/                   # Historique des commits
+│   │       └── PX-tXXX.md            # Journal commits par task
+│   └── task_archives/                 # Tasks terminées
+│       └── PX-tXXX-type-details.md   # Task archivée
 │
 ├── docs/                           # Documentation projet
 │   ├── CURSOR_LOAD.md             # Instructions de chargement Cursor (7 règles)
