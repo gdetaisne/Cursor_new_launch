@@ -4,6 +4,7 @@ import { DashboardPage } from '../pages/DashboardPage';
 import { FoldersPage } from '../pages/FoldersPage';
 import { FolderDetailPage } from '../pages/FolderDetailPage';
 import { QuotesPage } from '../pages/QuotesPage';
+import { QuoteDetailPage } from '../pages/QuoteDetailPage';
 import { MoversPage } from '../pages/MoversPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
 
@@ -20,6 +21,7 @@ export function AppRouter() {
           <Route path="folders" element={<FoldersPage />} />
           <Route path="folders/:folderId" element={<FolderDetailPage />} />
           <Route path="quotes" element={<QuotesPage />} />
+          <Route path="quotes/:quoteId" element={<QuoteDetailPage />} />
           <Route path="movers" element={<MoversPage />} />
           <Route path="clients" element={<div>Clients (Coming soon)</div>} />
           <Route path="leads" element={<div>Leads (Coming soon)</div>} />
