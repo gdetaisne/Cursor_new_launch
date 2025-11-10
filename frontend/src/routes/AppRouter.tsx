@@ -4,6 +4,7 @@ import { DashboardPage } from '../pages/DashboardPage';
 import { FoldersPage } from '../pages/FoldersPage';
 import { QuotesPage } from '../pages/QuotesPage';
 import { MoversPage } from '../pages/MoversPage';
+import { DesignSystemPage } from '../pages/DesignSystemPage';
 
 export function AppRouter() {
   return (
@@ -24,6 +25,7 @@ export function AppRouter() {
           <Route path="logs" element={<div>Logs (Coming soon)</div>} />
           <Route path="emails" element={<div>Emails (Coming soon)</div>} />
           <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
+          <Route path="design-system" element={<DesignSystemPage />} />
         </Route>
 
         {/* 404 */}
