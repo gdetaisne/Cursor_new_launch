@@ -13,14 +13,16 @@ NC='\033[0m' # No Color
 # Vérification des arguments
 if [ $# -lt 1 ]; then
     echo -e "${RED}Usage: $0 <task_id> [commit_message]${NC}"
-    echo "Exemple: $0 t002 'Optional custom commit message'"
+    echo "Exemples:"
+    echo "  $0 P0-t005"
+    echo "  $0 P0-t005 'Optional custom commit message'"
     exit 1
 fi
 
 TASK_ID=$1
 CUSTOM_MESSAGE=$2
 
-# Détection du fichier de task
+# Détection du fichier de task (supporte PX-tXXX ou tXXX legacy)
 TASK_FILES=(.cursor/tasks/${TASK_ID}-*.md)
 
 if [ ! -f "${TASK_FILES[0]}" ]; then

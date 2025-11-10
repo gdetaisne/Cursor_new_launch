@@ -82,19 +82,24 @@ cat .cursor/tasks/tXXX-type-details.md
 
 ### Créer une nouvelle task
 ```bash
-# Créer dans .cursor/tasks/
-nano .cursor/tasks/t002-feature-example.md
+# Créer dans .cursor/tasks/ (avec priorité)
+nano .cursor/tasks/P0-t011-feature-example.md
 
 # Créer le journal de commits
-nano .cursor/tasks/commits/t002.md
+nano .cursor/tasks/commits/P0-t011.md
 ```
+
+**Priorités** :
+- **P0** : Vital MVP (sans ça, rien ne marche)
+- **P1** : Nice to have → P0 rapide
+- **P2** : Nice to have, jamais prioritaire
 
 ### Archiver une task terminée
 
 **Méthode automatique (recommandée)** :
 ```bash
-# Utiliser le script d'archivage
-./scripts/tasks/complete-task.sh tXXX
+# Utiliser le script d'archivage (avec priorité)
+./scripts/tasks/complete-task.sh P0-t011
 ```
 
 Le script automatise :
@@ -106,7 +111,7 @@ Le script automatise :
 **Méthode manuelle** :
 ```bash
 # Déplacer la task
-mv .cursor/tasks/tXXX-type-details.md .cursor/task_archives/
+mv .cursor/tasks/PX-tXXX-type-details.md .cursor/task_archives/
 
 # Le journal de commits reste dans tasks/commits/
 ```

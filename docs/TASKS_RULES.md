@@ -4,15 +4,27 @@
 
 - Dossier : `.cursor/tasks` (tasks actives)
 - Dossier : `.cursor/task_archives` (tasks terminées)
-- Format : `tXXX-type-details.md` (ex: `t001-foundations-docs-and-tasks.md`)
-- `XXX` = numéro séquentiel.
+- Format : `PX-tXXX-type-details.md` 
+  - `PX` = Priorité : **P0** (vital MVP), **P1** (nice→P0), **P2** (nice, jamais prioritaire)
+  - `XXX` = numéro séquentiel
+  - Exemple : `P0-t005-schema-core-back-office.md`
 - AUCUN code dans `.cursor/tasks`. Ce sont des specs et journaux fonctionnels/techniques.
 - Les tasks sont indépendantes du code : on peut tout comprendre sans ouvrir `src/`.
+
+### Priorités
+
+| Priorité | Signification | Exemple |
+|----------|---------------|---------|
+| **P0** | Vital pour MVP - sans ça, rien ne marche | Schéma DB, Paiement |
+| **P1** | Nice to have qui deviendra vite P0 | Sync Google auto (peut être manuel au début) |
+| **P2** | Nice to have, jamais prioritaire avant P0/P1 | Portail Partner Phase 2 |
 
 ## Contenu obligatoire d'une task
 
 ```md
-# tXXX — Titre clair
+# PX-tXXX — Titre clair
+
+**Priorité : PX** (P0 = vital MVP, P1 = nice→P0, P2 = nice jamais prioritaire)
 
 ## Contexte
 ## Objectifs
@@ -101,12 +113,19 @@ Description brève des modifications.
 
 ## Cycle de vie d'une task
 
-1. **Création** : Nouvelle task dans `.cursor/tasks/tXXX-type-details.md`
+1. **Création** : Nouvelle task dans `.cursor/tasks/PX-tXXX-type-details.md`
 2. **Travail** : Mise à jour continue (Implémentation + État d'avancement)
 3. **Terminée** : Marquer statut ✅ Terminé
-4. **Archivage** : Déplacer vers `.cursor/task_archives/tXXX-type-details.md`
+4. **Archivage** : Déplacer vers `.cursor/task_archives/PX-tXXX-type-details.md`
 
-**Important** : Le journal de commits (`.cursor/tasks/commits/tXXX.md`) reste dans `commits/` même après archivage.
+**Important** : Le journal de commits (`.cursor/tasks/commits/PX-tXXX.md`) reste dans `commits/` même après archivage.
+
+### Changement de priorité
+
+Si une task change de priorité :
+1. Renommer le fichier (ex: `P1-t008` → `P0-t008`)
+2. Mettre à jour le header de la task
+3. Commit : `tXXX: Change priority from P1 to P0 - [raison]`
 
 ## Debug méthodique (Règle 8)
 
