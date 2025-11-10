@@ -111,7 +111,7 @@ Section complète avec :
 
 ## Commits liés
 
-- (à venir) `t004: Add Rule 9 - Deepsearch for exhaustive analysis`
+- [8c7fa52] `t004: Add Rule 9 - Deepsearch for exhaustive analysis` (2025-11-10 09:17)
 
 ## Notes futures
 
