@@ -95,7 +95,8 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - [e2c11b1] `t001: Remove duplicate task file from active tasks` (2025-11-10 08:51)
 - [a9a3fd4] `t001: Update commit journal with automation entries` (2025-11-10 08:51)
 - [af95b95] `t001: Finalize commit hash in archived task` (2025-11-10 08:51)
-- (pending) `t001: Refactor scripts location and add critical analysis rule`
+- [6d51bc4] `t001: Refactor scripts location and add critical analysis rule` (2025-11-10 08:53)
+- (pending) `t001: Update commit journal with refactor entry`
 
 ## Notes futures
 
