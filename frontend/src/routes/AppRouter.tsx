@@ -7,6 +7,9 @@ import { QuotesPage } from '../pages/QuotesPage';
 import { QuoteDetailPage } from '../pages/QuoteDetailPage';
 import { MoversPage } from '../pages/MoversPage';
 import { MoverDetailPage } from '../pages/MoverDetailPage';
+import { ClientsPage } from '../pages/ClientsPage';
+import { LeadsPage } from '../pages/LeadsPage';
+import { PaymentsPage } from '../pages/PaymentsPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
 
 export function AppRouter() {
@@ -25,9 +28,9 @@ export function AppRouter() {
           <Route path="quotes/:quoteId" element={<QuoteDetailPage />} />
           <Route path="movers" element={<MoversPage />} />
           <Route path="movers/:moverId" element={<MoverDetailPage />} />
-          <Route path="clients" element={<div>Clients (Coming soon)</div>} />
-          <Route path="leads" element={<div>Leads (Coming soon)</div>} />
-          <Route path="payments" element={<div>Paiements (Coming soon)</div>} />
+          <Route path="clients" element={<ClientsPage />} />
+          <Route path="leads" element={<LeadsPage />} />
+          <Route path="payments" element={<PaymentsPage />} />
           <Route path="logs" element={<div>Logs (Coming soon)</div>} />
           <Route path="emails" element={<div>Emails (Coming soon)</div>} />
           <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
