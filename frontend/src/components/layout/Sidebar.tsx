@@ -9,6 +9,7 @@ import {
   CreditCard,
   Activity,
   Mail,
+  Globe,
   Settings,
 } from 'lucide-react';
 
@@ -19,6 +20,7 @@ const navigation = [
   { name: 'Déménageurs', href: '/admin/movers', icon: Truck },
   { name: 'Clients', href: '/admin/clients', icon: Users },
   { name: 'Leads', href: '/admin/leads', icon: UserPlus },
+  { name: 'Websites', href: '/admin/websites', icon: Globe },
   { name: 'Paiements', href: '/admin/payments', icon: CreditCard },
   { name: 'Logs', href: '/admin/logs', icon: Activity },
   { name: 'Emails', href: '/admin/emails', icon: Mail },

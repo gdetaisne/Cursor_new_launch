@@ -1,7 +1,22 @@
 import { createApp } from './app.js';
 import { prisma } from './db/client.js';
+import { initializeBigQueryService } from './services/bigquery/index.js';
 
 const PORT = process.env.PORT || 3001;
+
+// Initialize BigQuery service (skip if credentials not available)
+try {
+  if (process.env.GCP_PROJECT_ID && process.env.BQ_DATASET && process.env.GCP_SA_KEY_JSON) {
+    initializeBigQueryService();
+    console.log('✅ BigQuery service initialized');
+  } else {
+    console.log('⚠️  BigQuery service not initialized (missing env variables)');
+  }
+} catch (error) {
+  console.error('❌ BigQuery initialization failed:', error);
+  console.log('⚠️  Continuing without BigQuery service');
+}
+
 const app = createApp();
 
 // Start server

@@ -14,6 +14,7 @@ import { LogsPage } from '../pages/LogsPage';
 import { AutomationsPage } from '../pages/AutomationsPage';
 import { EmailsPage } from '../pages/EmailsPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
+import WebsitesDashboardPage from '../pages/WebsitesDashboardPage';
 
 export function AppRouter() {
   return (
@@ -37,6 +38,7 @@ export function AppRouter() {
           <Route path="logs" element={<LogsPage />} />
           <Route path="automations" element={<AutomationsPage />} />
           <Route path="emails" element={<EmailsPage />} />
+          <Route path="websites" element={<WebsitesDashboardPage />} />
           <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
           <Route path="design-system" element={<DesignSystemPage />} />
         </Route>

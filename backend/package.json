@@ -21,12 +21,17 @@
     "test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test:coverage": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "test:api": "curl http://localhost:3001/health"
+    "test:api": "curl http://localhost:3001/health",
+    "etl:run": "tsx scripts/etl/run-all.ts",
+    "etl:gsc": "tsx scripts/etl/gsc/fetch-gsc-data.ts",
+    "etl:ga4": "tsx scripts/etl/ga4/fetch-ga4-data.ts",
+    "etl:webvitals": "tsx scripts/etl/webvitals/fetch-webvitals.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@google-cloud/bigquery": "^8.1.1",
     "@prisma/client": "^5.22.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
