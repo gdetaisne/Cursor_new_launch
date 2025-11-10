@@ -10,8 +10,11 @@ Back_Office/
 │   │   ├── tXXX-type-details.md   # Spec de task
 │   │   └── commits/                # Historique des commits
 │   │       └── tXXX.md            # Journal commits par task
-│   └── task_archives/              # Tasks terminées
-│       └── tXXX-type-details.md   # Task archivée
+│   ├── task_archives/              # Tasks terminées
+│   │   └── tXXX-type-details.md   # Task archivée
+│   └── scripts/                    # Scripts d'automatisation
+│       ├── README.md
+│       └── complete-task.sh        # Archivage automatique
 │
 ├── docs/                           # Documentation projet
 │   ├── CURSOR_LOAD.md             # Instructions de chargement Cursor
@@ -78,6 +81,20 @@ nano .cursor/tasks/commits/t002.md
 ```
 
 ### Archiver une task terminée
+
+**Méthode automatique (recommandée)** :
+```bash
+# Utiliser le script d'archivage
+./.cursor/scripts/complete-task.sh tXXX
+```
+
+Le script automatise :
+- Vérification du statut "Terminé"
+- Archivage dans task_archives
+- Création du commit
+- Mise à jour du journal
+
+**Méthode manuelle** :
 ```bash
 # Déplacer la task
 mv .cursor/tasks/tXXX-type-details.md .cursor/task_archives/

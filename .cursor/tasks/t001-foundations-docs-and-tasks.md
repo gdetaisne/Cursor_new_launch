@@ -23,8 +23,6 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - `.cursor/tasks/commits/t001.md` : journal des commits
 - `.cursor/task_archives/.gitkeep` : dossier pour tasks terminées
 - `.cursor/README.md` : documentation structure .cursor
-- `.cursor/scripts/complete-task.sh` : script d'archivage automatique
-- `.cursor/scripts/README.md` : documentation des scripts
 
 ### Hors périmètre
 - Aucun code source (backend, frontend, etc.)
@@ -58,7 +56,6 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - `tasks/` : tasks actives
 - `task_archives/` : tasks terminées
 - `tasks/commits/` : traçabilité des commits (ne bouge jamais)
-- `scripts/` : scripts d'automatisation (complete-task.sh)
 - `README.md` : documentation de la structure
 
 ## État d'avancement
@@ -75,17 +72,12 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - [x] Migration de /tasks vers .cursor/tasks effectuée
 - [x] Dossier /tasks supprimé (obsolète)
 - [x] docs/STRUCTURE.md créé avec arborescence complète
-- [x] Script .cursor/scripts/complete-task.sh créé
-- [x] Documentation scripts créée
 
-**Statut : ✅ Terminé et archivé**
+**Statut : ✅ Terminé**
 
 ## Commits liés
 
 - [306c912] `t001: Initialize project documentation and task system` (2025-11-10 08:50)
-- [6a0567a] `t001: Archive completed task and update commit hash` (2025-11-10 08:50)
-- [8dcb236] `t001: Update commit journal with archiving entry` (2025-11-10 08:50)
-- (pending) `t001: Add automation script for task completion`
 
 ## Notes futures
 
@@ -95,14 +87,5 @@ Cette task sert de fondation. Toutes les tasks futures devront :
 - Rester indépendantes du code (specs seulement)
 - Maintenir à jour le journal `.cursor/tasks/commits/tXXX.md` (règle Cursor #3)
 - Respecter strictement leur périmètre (règle Cursor #4)
-- Être archivées dans `.cursor/task_archives/` une fois terminées (utiliser complete-task.sh)
-
-### Utilisation du script d'archivage
-
-Pour archiver une task terminée :
-```bash
-./.cursor/scripts/complete-task.sh tXXX
-```
-
-Le script vérifie automatiquement le statut "✅ Terminé" et automatise tout le processus.
+- Être archivées dans `.cursor/task_archives/` une fois terminées
 

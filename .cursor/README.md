@@ -13,8 +13,11 @@ Ce dossier contient les tasks, métadonnées et outils de traçabilité pour Cur
 │   └── commits/                 (historique des commits)
 │       ├── t001.md
 │       └── t002.md
-└── task_archives/               (tasks terminées)
-    └── t000-type-details.md
+├── task_archives/               (tasks terminées)
+│   └── t000-type-details.md
+└── scripts/                     (scripts d'automatisation)
+    ├── README.md
+    └── complete-task.sh
 ```
 
 ## tasks/ (tasks actives)
@@ -77,4 +80,26 @@ Description brève des modifications apportées.
 **Tous les commits doivent être tracés** dans leur fichier respectif (règle Cursor #3).
 
 **Important** : Les fichiers de commits ne sont JAMAIS archivés, ils restent dans `tasks/commits/` même après archivage de la task.
+
+## scripts/ (automatisation)
+
+**Objectif** : Scripts pour automatiser les tâches répétitives du workflow.
+
+### complete-task.sh
+
+Script d'archivage automatique des tasks terminées.
+
+**Usage** :
+```bash
+./.cursor/scripts/complete-task.sh tXXX
+```
+
+**Fonctionnalités** :
+- ✅ Vérifie le statut "Terminé" 
+- ✅ Archive dans `task_archives/`
+- ✅ Crée un commit automatiquement
+- ✅ Met à jour le journal de commits
+- ✅ Affiche un résumé
+
+Voir `.cursor/scripts/README.md` pour plus de détails.
 
