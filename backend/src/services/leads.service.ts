@@ -96,7 +96,7 @@ export async function createLead(data: CreateLeadInput) {
     data: {
       ...data,
       status: 'NEW',
-    },
+    } as any, // Type cast needed for Zod → Prisma conversion
   });
 
   return lead;
@@ -165,7 +165,7 @@ export async function convertLead(leadId: string) {
   });
 
   // Update lead status
-  await prisma.lead.update({
+  const updatedLead = await prisma.lead.update({
     where: { id: leadId },
     data: {
       status: 'CONVERTED',
@@ -173,6 +173,10 @@ export async function convertLead(leadId: string) {
     },
   });
 
-  return folder;
+  return {
+    lead: updatedLead,
+    client,
+    folder,
+  };
 }
 
