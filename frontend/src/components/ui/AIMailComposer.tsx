@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { Button } from './Button';
 import { Card } from './Card';
 import { X, Sparkles, Send } from 'lucide-react';
+import axios from 'axios';
+
+const API_BASE = 'http://localhost:3001';
 
 interface AIMailComposerProps {
   isOpen: boolean;
   onClose: () => void;
   context?: {
     clientName?: string;
+    clientEmail?: string;
     folderName?: string;
+    folderId?: string;
     volume?: number;
     originCity?: string;
     destinationCity?: string;
@@ -82,11 +87,42 @@ export function AIMailComposer({ isOpen, onClose, context, onSend }: AIMailCompo
     }, 1500);
   };
 
-  const handleSend = () => {
-    if (onSend) {
-      onSend({ subject, body });
+  const handleSend = async () => {
+    if (!subject || !body) {
+      alert('Veuillez remplir l\'objet et le message');
+      return;
     }
-    onClose();
+
+    // Default recipient email or from context
+    const recipientEmail = context?.clientEmail || 'test@example.com';
+
+    try {
+      await axios.post(
+        `${API_BASE}/api/emails/send`,
+        {
+          to: recipientEmail,
+          subject,
+          body: `<html><body>${body.replace(/\n/g, '<br>')}</body></html>`,
+          folderId: context?.folderId,
+          type: 'CLIENT_REMINDER',
+        },
+        {
+          headers: { 'x-user-id': 'admin' }, // TODO: real auth
+        }
+      );
+
+      alert('✅ Email envoyé avec succès !');
+      
+      if (onSend) {
+        onSend({ subject, body });
+      }
+      
+      onClose();
+    } catch (error: any) {
+      console.error('Erreur envoi email:', error);
+      const errorMsg = error.response?.data?.message || 'Erreur lors de l\'envoi de l\'email';
+      alert(`❌ ${errorMsg}`);
+    }
   };
 
   return (
