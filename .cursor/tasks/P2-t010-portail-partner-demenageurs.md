@@ -1,4 +1,6 @@
-# t010 — Portail Partner `/partner` (déménageurs)
+# P2-t010 — Portail Partner `/partner` (déménageurs)
+
+**Priorité : P2** — Nice to have, jamais prioritaire avant P0/P1. Gestion manuelle possible au début.
 
 ## Contexte
 
@@ -48,6 +50,6 @@ Créer le portail autonome pour les déménageurs partenaires.
 
 - Task dédiée à l'implémentation concrète du layout `/partner`
 - Task dédiée au formulaire saisie grilles tarifaires
-- Cette task est **indépendante** du portail `/admin` (voir t006)
+- Cette task est **indépendante** du portail `/admin` (voir P0-t006)
 - Au début, saisie grilles peut se faire manuellement via admin ou SQL
 

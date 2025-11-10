@@ -1,4 +1,6 @@
-# t006 — Portail Admin `/admin` (équipe Moverz)
+# P0-t006 — Portail Admin `/admin` (équipe Moverz)
+
+**Priorité : P0** — Sans ce portail, l'équipe ne peut pas opérer.
 
 ## Contexte
 
@@ -48,5 +50,5 @@ Créer le back-office interne pour l'équipe Moverz.
 
 - Task dédiée à l'implémentation concrète du layout `/admin`
 - Task dédiée à l'auth & gestion des sessions
-- Cette task est **indépendante** du portail `/partner` (voir t010)
+- Cette task est **indépendante** du portail `/partner` (voir P2-t010)
 

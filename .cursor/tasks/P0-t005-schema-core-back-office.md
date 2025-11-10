@@ -1,4 +1,6 @@
-# t005 — Schéma core Back Office
+# P0-t005 — Schéma core Back Office
+
+**Priorité : P0** — Sans schéma DB, aucune donnée ne peut être stockée → rien ne marche.
 
 ## Contexte
 
@@ -8,7 +10,17 @@ lead → dossier → devis → top 3 → paiement → mise en relation.
 
 ## Objectifs
 
-- [ ] Décrire les tables core : dossiers, clients, déménageurs, devis, bookings, paiements, users/roles.
+- [ ] Décrire les tables core :
+  - `leads` : prospects issus des 11 sites locaux
+  - `folders` (dossiers) : dossier déménagement complet
+  - `clients` : données clients
+  - `movers` (déménageurs) : entreprises partenaires
+  - `pricing_grids` : grilles tarifaires (m³ + distance)
+  - `quotes` (devis) : devis collectés/générés
+  - `bookings` : réservations confirmées
+  - `payments` : paiements et reversements
+  - `users` : comptes admin/partners
+  - `roles` : permissions
 - [ ] Définir les relations, clés, statuts et contraintes minimales.
 - [ ] Servir de référence unique pour toutes les futures migrations.
 

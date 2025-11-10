@@ -1,4 +1,6 @@
-# t009 — Cycle de vie des devis & automatisations
+# P0-t009 — Cycle de vie des devis & automatisations
+
+**Priorité : P0** — Sans collecte et scoring de devis, pas de top 3 pour le client → flux bloqué.
 
 ## Contexte
 
@@ -9,8 +11,12 @@ pour produire le top 3 pour le client.
 
 - [ ] Définir les statuts d'un devis (REQUESTED, RECEIVED, REMINDED, EXPIRED, etc.).
 - [ ] Définir les règles d'assignation (10 déménageurs / dossier).
-- [ ] Définir les règles de relance automatique (J+1, J+3, J+5…).
-- [ ] Définir le calcul de score global (prix + Google + financier + litiges).
+- [ ] Définir les règles de relance automatique (J+2, J+4).
+- [ ] Définir le calcul de score global :
+  - Prix (pondération)
+  - Avis Google (rating + nombre)
+  - Score financier (saisie manuelle admin via accès CreditSafe web, pas API)
+  - Litiges/blacklist
 - [ ] Définir comment est générée la page Top 3 côté client.
 
 ## Périmètre

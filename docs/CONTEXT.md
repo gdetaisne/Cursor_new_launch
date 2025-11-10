@@ -42,7 +42,8 @@ Moverz agit comme **tiers de confiance digital** entre clients et déménageurs.
 
 6. **Paiement de l'acompte (30%)**
    - Transaction sécurisée via Stripe Connect.
-   - Moverz conserve 30%, reverse la part du déménageur.
+   - Le client paie 30% d'acompte du montant total du déménagement.
+   - Moverz prélève sa commission (5-15% de l'acompte), reverse le reste au déménageur.
 
 7. **Mise en relation automatique**
    - Contact complet échangé uniquement après paiement.
@@ -124,5 +125,6 @@ Aucun outil tiers (CRM, tableur, Airtable) ne doit dupliquer ses fonctions.
 
 | Date | Task | Changement | Auteur |
 |-------|------|-------------|---------|
-| 2025-11-10 | t002 | Création initiale du contexte business | gdetaisne |
+| 2025-11-10 | P0-t002 | Création initiale du contexte business | gdetaisne |
+| 2025-11-10 | Deepsearch | Clarification modèle paiement (commission 5-15%) | Cursor |
 

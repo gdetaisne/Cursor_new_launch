@@ -1,11 +1,14 @@
-# t007 — Flux de paiement & Stripe Connect
+# P0-t007 — Flux de paiement & Stripe Connect
+
+**Priorité : P0** — Sans paiement, pas de modèle économique → pas de business.
 
 ## Contexte
 
 Formaliser le flux de paiement Moverz :
-- le client paie un acompte (30 %)
+- le client paie un acompte (30% du montant total)
 - Moverz encaisse sur la plateforme
-- reversement de la part déménageur
+- Moverz prélève sa commission (5-15% de l'acompte)
+- reversement du reste au déménageur
 - déclenchement de la mise en relation.
 
 ## Objectifs

@@ -8,6 +8,6 @@ Principes :
 - Portails :
   - `/admin` : équipe Moverz
   - `/partner` : déménageurs
-- Traçabilité : aucune modification sans task dédiée dans `/tasks`.
+- Traçabilité : aucune modification sans task dédiée dans `.cursor/tasks`.
 - Les tasks décrivent le *pourquoi/comment* ; le code reste hors de `/tasks`.
 

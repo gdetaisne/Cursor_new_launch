@@ -1,4 +1,6 @@
-# t008 — Données déménageurs & sync Google
+# P1-t008 — Données déménageurs & sync Google
+
+**Priorité : P1** — Nice to have qui deviendra P0. Sync auto pas bloquant MVP (peut être manuel au début).
 
 ## Contexte
 
