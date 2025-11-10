@@ -77,7 +77,7 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 
 ## Commits liés
 
-- (à venir) `t001: Initialize project documentation and task system`
+- [306c912] `t001: Initialize project documentation and task system` (2025-11-10 08:50)
 
 ## Notes futures
 
