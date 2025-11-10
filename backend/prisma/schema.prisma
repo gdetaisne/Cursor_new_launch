@@ -369,8 +369,10 @@ model Quote {
   
   // Relations
   booking           Booking?
-  folderSelected    Folder?       @relation("SelectedQuote")  // Si choisi par client
-  top3Selections    Top3Selection[]  // Historique apparitions dans top 3
+  folderSelected    Folder?              @relation("SelectedQuote")  // Si choisi par client
+  top3AsQuote1      Top3Selection[]      @relation("Top3Quote1")
+  top3AsQuote2      Top3Selection[]      @relation("Top3Quote2")
+  top3AsQuote3      Top3Selection[]      @relation("Top3Quote3")
   
   @@index([folderId, status])
   @@index([folderId, scoreTotal])  // Composite pour requête top 3
@@ -413,11 +415,11 @@ model Top3Selection {
   
   // Les 3 quotes présentés (snapshot au moment présentation)
   quote1Id        String
-  quote1          Quote    @relation(fields: [quote1Id], references: [id], onDelete: Restrict)
+  quote1          Quote    @relation("Top3Quote1", fields: [quote1Id], references: [id], onDelete: Restrict)
   quote2Id        String
-  quote2          Quote    @relation(fields: [quote2Id], references: [id], onDelete: Restrict)
+  quote2          Quote    @relation("Top3Quote2", fields: [quote2Id], references: [id], onDelete: Restrict)
   quote3Id        String
-  quote3          Quote    @relation(fields: [quote3Id], references: [id], onDelete: Restrict)
+  quote3          Quote    @relation("Top3Quote3", fields: [quote3Id], references: [id], onDelete: Restrict)
   
   // Snapshot scores au moment présentation (figés, ne changent plus)
   quote1ScoreTotal     Decimal  @db.Decimal(5,2)
