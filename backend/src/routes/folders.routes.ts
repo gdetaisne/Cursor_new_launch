@@ -3,6 +3,7 @@ import * as foldersController from '../controllers/folders.controller.js';
 import { validateBody } from '../middlewares/validateRequest.js';
 import { createFolderSchema, updateFolderSchema, selectQuoteSchema } from '../schemas/index.js';
 import { z } from 'zod';
+import foldersQuotesRoutes from './folders-quotes.routes.js';
 
 const router = Router();
 
@@ -64,6 +65,11 @@ router.delete(
   '/:id',
   foldersController.deleteFolder
 );
+
+/**
+ * Nested routes: /api/folders/:folderId/quotes
+ */
+router.use('/:folderId/quotes', foldersQuotesRoutes);
 
 export default router;
 
