@@ -3,8 +3,8 @@ import healthRoutes from './health.routes.js';
 import foldersRoutes from './folders.routes.js';
 import quotesRoutes from './quotes.routes.js';
 import moversRoutes from './movers.routes.js';
+import clientsRoutes from './clients.routes.js';
 // Import other routes here when created
-// import clientsRoutes from './clients.routes.js';
 // import leadsRoutes from './leads.routes.js';
 // import bookingsRoutes from './bookings.routes.js';
 
@@ -17,7 +17,7 @@ router.use('/health', healthRoutes);
 router.use('/api/folders', foldersRoutes);
 router.use('/api/quotes', quotesRoutes);
 router.use('/api/movers', moversRoutes);
-// router.use('/api/clients', clientsRoutes);
+router.use('/api/clients', clientsRoutes);
 // router.use('/api/leads', leadsRoutes);
 // router.use('/api/bookings', bookingsRoutes);
 
