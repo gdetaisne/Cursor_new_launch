@@ -151,6 +151,19 @@ export async function createBooking(data: CreateBookingInput) {
     throw ApiError.notFound('Quote not found or not validated');
   }
 
+  // Check if folder already has an active booking
+  const existingBooking = await prisma.booking.findFirst({
+    where: {
+      folderId: data.folderId,
+      status: { in: ['PENDING_PAYMENT', 'CONFIRMED', 'IN_PROGRESS'] },
+      deletedAt: null,
+    },
+  });
+
+  if (existingBooking) {
+    throw ApiError.conflict('Folder already has an active booking');
+  }
+
   // Validate deposit is 30% of total
   const totalAmount = new Decimal(data.totalAmount);
   const depositAmount = new Decimal(data.depositAmount);
@@ -283,20 +296,20 @@ export async function createPayment(data: CreatePaymentInput) {
     throw ApiError.notFound('Booking not found');
   }
 
-  // Calculate commission and mover amount
+  // Calculate commission and mover amount (if provided)
   const amount = new Decimal(data.amount);
-  const commissionRate = new Decimal(data.commissionRate);
-  const commissionAmount = amount.mul(commissionRate);
-  const moverAmount = amount.sub(commissionAmount);
+  const commissionRate = data.commissionRate ? new Decimal(data.commissionRate) : null;
+  const commissionAmount = commissionRate ? amount.mul(commissionRate) : null;
+  const moverAmount = commissionAmount ? amount.sub(commissionAmount) : null;
 
   // Create payment
   const payment = await prisma.payment.create({
     data: {
       ...data,
-      commissionAmount: commissionAmount.toString(),
-      moverAmount: moverAmount.toString(),
+      commissionAmount: commissionAmount?.toString(),
+      moverAmount: moverAmount?.toString(),
       status: 'PENDING',
-    },
+    } as any, // Type cast for Zod → Prisma
     include: {
       booking: {
         include: {
