@@ -12,6 +12,7 @@ import { LeadsPage } from '../pages/LeadsPage';
 import { PaymentsPage } from '../pages/PaymentsPage';
 import { LogsPage } from '../pages/LogsPage';
 import { AutomationsPage } from '../pages/AutomationsPage';
+import { EmailsPage } from '../pages/EmailsPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
 
 export function AppRouter() {
@@ -35,7 +36,7 @@ export function AppRouter() {
           <Route path="payments" element={<PaymentsPage />} />
           <Route path="logs" element={<LogsPage />} />
           <Route path="automations" element={<AutomationsPage />} />
-          <Route path="emails" element={<div>Emails (Coming soon)</div>} />
+          <Route path="emails" element={<EmailsPage />} />
           <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
           <Route path="design-system" element={<DesignSystemPage />} />
         </Route>
