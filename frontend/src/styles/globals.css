@@ -2,50 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   🍎 APPLE LIQUID GLASS DESIGN SYSTEM
+   ============================================ */
+
 @layer base {
   :root {
+    /* shadcn/ui compatibility (light mode) */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 212 100% 50%; /* Apple Blue #007AFF */
+    --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 60%; /* Apple Red #FF3B30 */
+    --destructive-foreground: 0 0% 100%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --ring: 212 100% 50%;
+    --radius: 0.75rem;
   }
 
   .dark {
+    /* shadcn/ui compatibility (dark mode) */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 212 100% 64%; /* Apple Blue (lighter for dark mode) */
+    --primary-foreground: 0 0% 100%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --ring: 212 100% 64%;
   }
 }
 
@@ -53,17 +59,218 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    @apply antialiased;
+    @apply transition-colors duration-300;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 850;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* Apple Glass Effect */
-.glass {
-  @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50;
+/* ============================================
+   💎 APPLE GLASS EFFECTS
+   ============================================ */
+
+@layer components {
+  /* Base Glass Effect (Liquid Glass) */
+  .glass {
+    @apply relative;
+    @apply bg-white/[0.72] dark:bg-[rgb(30,30,30)]/[0.68];
+    @apply backdrop-blur-xl backdrop-saturate-150;
+    @apply border border-gray-200/40 dark:border-gray-700/30;
+    @apply shadow-glass-light dark:shadow-glass-dark;
+    @apply transition-all duration-300 ease-apple;
+  }
+
+  /* Glass variations */
+  .glass-strong {
+    @apply bg-white/[0.85] dark:bg-gray-900/[0.85];
+    @apply backdrop-blur-2xl;
+    @apply border-gray-200/60 dark:border-gray-700/50;
+  }
+
+  .glass-subtle {
+    @apply bg-white/[0.55] dark:bg-gray-900/[0.45];
+    @apply backdrop-blur-lg;
+    @apply border-gray-200/30 dark:border-gray-700/20;
+  }
+
+  /* Glass with hover effect */
+  .glass-interactive {
+    @apply glass;
+    @apply cursor-pointer;
+    @apply hover:bg-white/[0.82] dark:hover:bg-gray-900/[0.78];
+    @apply hover:shadow-glass-light dark:hover:shadow-glass-dark;
+    @apply hover:scale-[1.02];
+    @apply active:scale-[0.98];
+    @apply transition-all duration-200 ease-apple-bounce;
+  }
+
+  /* ============================================
+     🎨 APPLE BUTTON STYLES
+     ============================================ */
+
+  /* Primary Button (Apple Blue) */
+  .btn-apple-blue {
+    @apply relative inline-flex items-center justify-center;
+    @apply px-6 py-2.5 rounded-xl;
+    @apply bg-apple-blue text-white font-medium;
+    @apply shadow-lg shadow-apple-blue/25;
+    @apply hover:bg-[#0061D5] hover:shadow-xl hover:shadow-apple-blue/30;
+    @apply active:scale-[0.96];
+    @apply transition-all duration-200 ease-apple-bounce;
+    @apply focus:outline-none focus:ring-2 focus:ring-apple-blue/50 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  /* Success Button (Apple Green) */
+  .btn-apple-green {
+    @apply btn-apple-blue;
+    @apply bg-apple-green shadow-apple-green/25;
+    @apply hover:bg-[#2FB350] hover:shadow-apple-green/30;
+    @apply focus:ring-apple-green/50;
+  }
+
+  /* Danger Button (Apple Red) */
+  .btn-apple-red {
+    @apply btn-apple-blue;
+    @apply bg-apple-red shadow-apple-red/25;
+    @apply hover:bg-[#E6352B] hover:shadow-apple-red/30;
+    @apply focus:ring-apple-red/50;
+  }
+
+  /* Secondary Button (Glass) */
+  .btn-apple-secondary {
+    @apply glass-interactive;
+    @apply px-6 py-2.5 rounded-xl;
+    @apply text-gray-900 dark:text-white font-medium;
+    @apply hover:bg-white/90 dark:hover:bg-gray-800/90;
+  }
+
+  /* Ghost Button */
+  .btn-apple-ghost {
+    @apply px-6 py-2.5 rounded-xl;
+    @apply text-gray-700 dark:text-gray-300 font-medium;
+    @apply hover:bg-gray-100/80 dark:hover:bg-gray-800/60;
+    @apply active:scale-[0.96];
+    @apply transition-all duration-200 ease-apple;
+  }
+
+  /* ============================================
+     🎴 APPLE CARD STYLES
+     ============================================ */
+
+  .card-apple {
+    @apply glass;
+    @apply rounded-2xl p-6;
+    @apply shadow-soft-lg;
+  }
+
+  .card-apple-interactive {
+    @apply card-apple;
+    @apply cursor-pointer;
+    @apply hover:shadow-glass-light dark:hover:shadow-glass-dark;
+    @apply hover:-translate-y-0.5;
+    @apply active:translate-y-0;
+    @apply transition-all duration-200 ease-apple-bounce;
+  }
+
+  /* ============================================
+     📝 APPLE INPUT STYLES
+     ============================================ */
+
+  .input-apple {
+    @apply glass;
+    @apply w-full px-4 py-2.5 rounded-xl;
+    @apply text-gray-900 dark:text-white;
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-apple-blue/50;
+    @apply transition-all duration-200 ease-apple;
+  }
+
+  /* ============================================
+     🏷️ APPLE BADGE STYLES
+     ============================================ */
+
+  .badge-apple {
+    @apply inline-flex items-center px-2.5 py-1 rounded-lg;
+    @apply text-xs font-medium;
+    @apply bg-gray-100/80 dark:bg-gray-800/80;
+    @apply text-gray-700 dark:text-gray-300;
+    @apply backdrop-blur-sm;
+  }
+
+  .badge-apple-blue {
+    @apply badge-apple;
+    @apply bg-apple-blue/10 text-apple-blue;
+    @apply dark:bg-apple-blue/20 dark:text-blue-400;
+  }
+
+  .badge-apple-green {
+    @apply badge-apple;
+    @apply bg-apple-green/10 text-apple-green;
+    @apply dark:bg-apple-green/20 dark:text-green-400;
+  }
+
+  .badge-apple-red {
+    @apply badge-apple;
+    @apply bg-apple-red/10 text-apple-red;
+    @apply dark:bg-apple-red/20 dark:text-red-400;
+  }
+
+  .badge-apple-orange {
+    @apply badge-apple;
+    @apply bg-apple-orange/10 text-apple-orange;
+    @apply dark:bg-apple-orange/20 dark:text-orange-400;
+  }
+
+  /* ============================================
+     ✨ UTILITY CLASSES
+     ============================================ */
+
+  /* Gradient backgrounds (Apple style) */
+  .gradient-apple-light {
+    @apply bg-gradient-to-br from-gray-50 via-white to-gray-100;
+  }
+
+  .gradient-apple-dark {
+    @apply bg-gradient-to-br from-gray-950 via-gray-900 to-black;
+  }
+
+  /* Text shimmer effect */
+  .text-shimmer {
+    @apply bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900;
+    @apply dark:from-white dark:via-gray-400 dark:to-white;
+    @apply bg-clip-text text-transparent;
+    @apply bg-[length:200%_auto];
+    @apply animate-shimmer;
+  }
+
+  /* Divider */
+  .divider-apple {
+    @apply h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent;
+  }
 }
 
-/* Reduced Motion */
+/* ============================================
+   ♿ ACCESSIBILITY
+   ============================================ */
+
+/* Focus visible (keyboard navigation) */
+@layer utilities {
+  .focus-visible-apple {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-apple-blue/50 focus-visible:ring-offset-2;
+  }
+}
+
+/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -71,6 +278,15 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .glass {
+    @apply bg-white dark:bg-gray-950;
+    @apply border-2 border-gray-900 dark:border-white;
   }
 }
 
