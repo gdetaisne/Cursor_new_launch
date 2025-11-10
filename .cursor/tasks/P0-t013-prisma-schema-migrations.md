@@ -319,15 +319,25 @@ main()
 
 ## État d'avancement
 
-- [ ] Prisma schema généré (schema.prisma)
-- [ ] Migration init_schema exécutée sans erreur
-- [ ] Seed validé (données cohérentes)
-- [ ] Neon connecté et testé (< 50ms ping)
-- [ ] Validation Zod créée (6 schemas)
-- [ ] Documentation maintenance complète
+- [x] Prisma schema généré (schema.prisma) ✅
+- [x] Structure backend créée (src/, prisma/, scripts/) ✅
+- [x] Configuration package.json + tsconfig.json ✅
+- [x] Seed complet (seed.ts) ✅
+- [x] Validation Zod créée (6 schemas) ✅
+- [x] Client Prisma singleton (src/db/client.ts) ✅
+- [x] Script test connexion (scripts/test-db-connection.ts) ✅
+- [x] Documentation maintenance complète (prisma/README.md) ✅
+- [ ] Migration init_schema exécutée sur Neon.tech
+- [ ] Seed exécuté sans erreur
 - [ ] Tests connexion passent (5/5)
 
-**Statut : 📝 Spécification — Prêt pour implémentation**
+**Statut : ⚙️ Infrastructure prête — En attente setup Neon.tech**
+
+L'infrastructure Prisma est complète et prête à être déployée. Les prochaines étapes nécessitent:
+1. Création d'une base Neon.tech
+2. Configuration DATABASE_URL dans .env
+3. Exécution des migrations et seed
+4. Validation des tests
 
 ## Commits liés
 
