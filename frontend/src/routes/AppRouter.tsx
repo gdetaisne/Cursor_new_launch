@@ -10,6 +10,8 @@ import { MoverDetailPage } from '../pages/MoverDetailPage';
 import { ClientsPage } from '../pages/ClientsPage';
 import { LeadsPage } from '../pages/LeadsPage';
 import { PaymentsPage } from '../pages/PaymentsPage';
+import { LogsPage } from '../pages/LogsPage';
+import { AutomationsPage } from '../pages/AutomationsPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
 
 export function AppRouter() {
@@ -31,7 +33,8 @@ export function AppRouter() {
           <Route path="clients" element={<ClientsPage />} />
           <Route path="leads" element={<LeadsPage />} />
           <Route path="payments" element={<PaymentsPage />} />
-          <Route path="logs" element={<div>Logs (Coming soon)</div>} />
+          <Route path="logs" element={<LogsPage />} />
+          <Route path="automations" element={<AutomationsPage />} />
           <Route path="emails" element={<div>Emails (Coming soon)</div>} />
           <Route path="settings" element={<div>Paramètres (Coming soon)</div>} />
           <Route path="design-system" element={<DesignSystemPage />} />
