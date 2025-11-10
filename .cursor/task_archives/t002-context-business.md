@@ -91,6 +91,7 @@ Cette documentation servira de référence pour toutes les décisions techniques
 ## Commits liés
 
 - [a6551c7] `t002: Add business context documentation` (2025-11-10 08:57)
+- [603c044] `Fix complete-task.sh and archive t002` (2025-11-10 08:58)
 
 ## Notes futures
 
