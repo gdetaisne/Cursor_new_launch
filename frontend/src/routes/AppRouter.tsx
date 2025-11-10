@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AdminLayout } from '../components/layout/AdminLayout';
 import { DashboardPage } from '../pages/DashboardPage';
 import { FoldersPage } from '../pages/FoldersPage';
+import { FolderDetailPage } from '../pages/FolderDetailPage';
 import { QuotesPage } from '../pages/QuotesPage';
 import { MoversPage } from '../pages/MoversPage';
 import { DesignSystemPage } from '../pages/DesignSystemPage';
@@ -17,6 +18,7 @@ export function AppRouter() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="folders" element={<FoldersPage />} />
+          <Route path="folders/:folderId" element={<FolderDetailPage />} />
           <Route path="quotes" element={<QuotesPage />} />
           <Route path="movers" element={<MoversPage />} />
           <Route path="clients" element={<div>Clients (Coming soon)</div>} />
