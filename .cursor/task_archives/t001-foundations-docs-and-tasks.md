@@ -15,7 +15,7 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 ## Périmètre
 
 ### Fichiers créés
-- `/docs/CURSOR_LOAD.md` : instructions de chargement
+- `/docs/CURSOR_LOAD.md` : instructions de chargement (7 règles dont analyse critique)
 - `/docs/README_BACKOFFICE.md` : vision Back Office Moverz
 - `/docs/TASKS_RULES.md` : règles de gestion des tasks
 - `/docs/STRUCTURE.md` : arborescence et workflow du projet
@@ -23,8 +23,8 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - `.cursor/tasks/commits/t001.md` : journal des commits
 - `.cursor/task_archives/.gitkeep` : dossier pour tasks terminées
 - `.cursor/README.md` : documentation structure .cursor
-- `.cursor/scripts/complete-task.sh` : script d'archivage automatique
-- `.cursor/scripts/README.md` : documentation des scripts
+- `/scripts/tasks/complete-task.sh` : script d'archivage automatique
+- `/scripts/tasks/README.md` : documentation des scripts
 
 ### Hors périmètre
 - Aucun code source (backend, frontend, etc.)
@@ -35,10 +35,11 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 
 ### Documentation créée
 
-**CURSOR_LOAD.md** : Checklist de démarrage en 6 points
+**CURSOR_LOAD.md** : Checklist de démarrage en 7 règles
 - Lecture docs obligatoire
 - Identification/création task dans `.cursor/tasks`
 - Travail dans le périmètre défini
+- **Règle 7 : Analyse critique** (proposer options, effets de bord, questionner priorité)
 
 **README_BACKOFFICE.md** : Vision projet
 - Plateforme interne Moverz
@@ -58,8 +59,11 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - `tasks/` : tasks actives
 - `task_archives/` : tasks terminées
 - `tasks/commits/` : traçabilité des commits (ne bouge jamais)
-- `scripts/` : scripts d'automatisation (complete-task.sh)
 - `README.md` : documentation de la structure
+
+**Structure /scripts/** : Scripts d'automatisation
+- `tasks/` : scripts gestion tasks (complete-task.sh)
+- Séparation claire : `.cursor/` = données, `/scripts` = exécutables
 
 ## État d'avancement
 
@@ -75,8 +79,10 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - [x] Migration de /tasks vers .cursor/tasks effectuée
 - [x] Dossier /tasks supprimé (obsolète)
 - [x] docs/STRUCTURE.md créé avec arborescence complète
-- [x] Script .cursor/scripts/complete-task.sh créé
+- [x] Script scripts/tasks/complete-task.sh créé
 - [x] Documentation scripts créée
+- [x] Règle 7 ajoutée dans CURSOR_LOAD (analyse critique)
+- [x] Refactor scripts : .cursor/scripts → /scripts/tasks
 
 **Statut : ✅ Terminé et archivé**
 
@@ -88,6 +94,8 @@ Dépôt Back_Office Moverz vide. Besoin de mettre en place les fondations : docu
 - [2923c6f] `t001: Add automation script for task completion` (2025-11-10 08:51)
 - [e2c11b1] `t001: Remove duplicate task file from active tasks` (2025-11-10 08:51)
 - [a9a3fd4] `t001: Update commit journal with automation entries` (2025-11-10 08:51)
+- [af95b95] `t001: Finalize commit hash in archived task` (2025-11-10 08:51)
+- (pending) `t001: Refactor scripts location and add critical analysis rule`
 
 ## Notes futures
 
@@ -103,8 +111,18 @@ Cette task sert de fondation. Toutes les tasks futures devront :
 
 Pour archiver une task terminée :
 ```bash
-./.cursor/scripts/complete-task.sh tXXX
+./scripts/tasks/complete-task.sh tXXX
 ```
 
 Le script vérifie automatiquement le statut "✅ Terminé" et automatise tout le processus.
+
+### Règle 7 : Analyse critique
+
+Toujours proposer 2-3 options avant d'implémenter, avec :
+- Pour/contre de chaque option
+- Effets de bord identifiés
+- Questionnement de la priorité
+- Demande de confirmation
+
+**Exemple appliqué** : Refactor `.cursor/scripts` → `/scripts/tasks` pour séparer données et exécutables.
 

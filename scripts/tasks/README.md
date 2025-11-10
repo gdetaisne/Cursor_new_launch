@@ -6,7 +6,7 @@ Scripts pour faciliter la gestion des tasks et du workflow.
 
 **Usage** :
 ```bash
-./.cursor/scripts/complete-task.sh <task_id> [commit_message]
+./scripts/tasks/complete-task.sh <task_id> [commit_message]
 ```
 
 **Description** :
@@ -20,10 +20,10 @@ Automatise le processus de finalisation d'une task :
 **Exemples** :
 ```bash
 # Archivage simple
-./.cursor/scripts/complete-task.sh t002
+./scripts/tasks/complete-task.sh t002
 
 # Avec message personnalisé
-./.cursor/scripts/complete-task.sh t002 "t002: Complete API implementation with tests"
+./scripts/tasks/complete-task.sh t002 "t002: Complete API implementation with tests"
 ```
 
 **Prérequis** :

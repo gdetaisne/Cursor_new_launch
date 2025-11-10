@@ -10,17 +10,19 @@ Back_Office/
 │   │   ├── tXXX-type-details.md   # Spec de task
 │   │   └── commits/                # Historique des commits
 │   │       └── tXXX.md            # Journal commits par task
-│   ├── task_archives/              # Tasks terminées
-│   │   └── tXXX-type-details.md   # Task archivée
-│   └── scripts/                    # Scripts d'automatisation
-│       ├── README.md
-│       └── complete-task.sh        # Archivage automatique
+│   └── task_archives/              # Tasks terminées
+│       └── tXXX-type-details.md   # Task archivée
 │
 ├── docs/                           # Documentation projet
-│   ├── CURSOR_LOAD.md             # Instructions de chargement Cursor
+│   ├── CURSOR_LOAD.md             # Instructions de chargement Cursor (7 règles)
 │   ├── README_BACKOFFICE.md       # Vision et objectifs du projet
 │   ├── TASKS_RULES.md             # Règles de gestion des tasks
 │   └── STRUCTURE.md               # Ce fichier
+│
+├── scripts/                        # Scripts d'automatisation
+│   └── tasks/                     # Gestion des tasks
+│       ├── README.md
+│       └── complete-task.sh       # Archivage automatique
 │
 ├── backend/                        # API Express/TypeScript (à venir)
 │   ├── src/
@@ -37,11 +39,18 @@ Back_Office/
 ### `.cursor/`
 Contient le système de gestion des tasks et la traçabilité complète.
 
-**Ne jamais commiter de code applicatif ici.**
+**Métadonnées uniquement, pas d'exécutables.**
 
 - `tasks/` : Tasks actives en cours de travail
 - `task_archives/` : Archive des tasks terminées
 - `tasks/commits/` : Historique détaillé de tous les commits
+
+### `scripts/`
+Scripts d'automatisation du projet.
+
+**Séparé de `.cursor/`** pour respecter le principe : `.cursor/` = données, `/scripts` = exécutables.
+
+- `tasks/` : Scripts de gestion des tasks (complete-task.sh)
 
 ### `docs/`
 Documentation générale du projet, règles et conventions.
@@ -85,7 +94,7 @@ nano .cursor/tasks/commits/t002.md
 **Méthode automatique (recommandée)** :
 ```bash
 # Utiliser le script d'archivage
-./.cursor/scripts/complete-task.sh tXXX
+./scripts/tasks/complete-task.sh tXXX
 ```
 
 Le script automatise :
