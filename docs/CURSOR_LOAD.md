@@ -13,4 +13,12 @@ Avant toute action :
    • Identifier les effets de bord
    • Questionner la priorité
    • Demander confirmation avant implémentation
+8. Debug méthodique et traçable :
+   • Par défaut : hypothèse recommandée, un changement à la fois
+   • Mode STRICT (mot-clé "debug") :
+     - Hypothèse OBLIGATOIRE avant changement
+     - UN changement à la fois, tester entre chaque
+     - Rechercher docs externes + cas similaires (Reddit, Stack Overflow, GitHub)
+     - Si résolu après plusieurs changements : rollback et isoler
+     - Expliquer cause racine + source dans commit
 
