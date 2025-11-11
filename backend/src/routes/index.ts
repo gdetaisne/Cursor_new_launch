@@ -7,6 +7,7 @@ import clientsRoutes from './clients.routes.js';
 import leadsRoutes from './leads.routes.js';
 import bookingsRoutes from './bookings.routes.js';
 import emailsRoutes from './emails.routes.js';
+import emailDraftsRoutes from './emailDrafts.routes.js';
 import analyticsRoutes from './analytics/index.js';
 
 const router = Router();
@@ -22,6 +23,7 @@ router.use('/api/clients', clientsRoutes);
 router.use('/api/leads', leadsRoutes);
 router.use('/api/bookings', bookingsRoutes);
 router.use('/api/emails', emailsRoutes);
+router.use('/api/emails', emailDraftsRoutes); // Drafts under /api/emails/drafts
 router.use('/api/analytics', analyticsRoutes);
 
 export default router;

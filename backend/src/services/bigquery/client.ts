@@ -80,7 +80,7 @@ class BigQueryClient {
     // 2. Exécuter la query avec retry
     try {
       const timeout = options.timeout ?? this.config.timeoutMs!;
-      const [rows] = await this.executeWithRetry<T>(sql, timeout);
+      const [rows] = await this.executeWithRetry<T>(sql, params, timeout);
 
       const duration = Date.now() - startTime;
       console.log(`[BigQuery] Query ${queryName} completed (${duration}ms, ${rows.length} rows)`);
@@ -102,6 +102,7 @@ class BigQueryClient {
    */
   private async executeWithRetry<T>(
     sql: string,
+    params: any,
     timeout: number,
     attempt = 1
   ): Promise<T[][]> {
@@ -112,9 +113,13 @@ class BigQueryClient {
     try {
       const options = {
         query: sql,
+        params: params, // Ajouter les paramètres nommés
+        location: 'europe-west1', // Location du dataset analytics_core
         timeoutMs: timeout,
         useLegacySql: false,
       };
+
+      console.log('[BigQuery] Query options:', JSON.stringify({ params, location: options.location }, null, 2));
 
       return await this.client.query(options);
     } catch (error: any) {
@@ -124,7 +129,7 @@ class BigQueryClient {
         const delay = Math.min(1000 * Math.pow(2, attempt - 1), 10000); // Backoff exponentiel
         console.warn(`[BigQuery] Retry attempt ${attempt} after ${delay}ms`);
         await new Promise(resolve => setTimeout(resolve, delay));
-        return this.executeWithRetry<T>(sql, timeout, attempt + 1);
+        return this.executeWithRetry<T>(sql, params, timeout, attempt + 1);
       }
 
       throw error;

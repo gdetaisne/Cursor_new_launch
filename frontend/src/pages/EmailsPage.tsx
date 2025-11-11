@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Mail, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { Mail, CheckCircle, XCircle, Loader2, Plus, FileText } from 'lucide-react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'http://localhost:4000';
 
 interface EmailLog {
   id: string;
   type: string;
-  recipientEmail: string;
+  recipient: string;
   subject: string;
   status: string;
   sentAt: string | null;
@@ -19,14 +21,16 @@ interface EmailLog {
     originCity: string;
     destCity: string;
   };
-  sentBy?: {
+  sentByUser?: {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
   };
 }
 
 export function EmailsPage() {
+  const navigate = useNavigate();
   const [emails, setEmails] = useState<EmailLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,11 +65,23 @@ export function EmailsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Emails</h1>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-          Historique des emails envoyés par le système
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Emails</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Historique des emails envoyés par le système
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="secondary" onClick={() => navigate('/admin/emails/drafts')}>
+            <FileText className="w-4 h-4 mr-2" />
+            Brouillons
+          </Button>
+          <Button variant="primary" onClick={() => navigate('/admin/emails/compose')}>
+            <Plus className="w-4 h-4 mr-2" />
+            Nouveau
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -144,7 +160,7 @@ export function EmailsPage() {
                   className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors"
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {email.recipientEmail}
+                    {email.recipient}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-900 dark:text-white max-w-md truncate">
                     {email.subject}

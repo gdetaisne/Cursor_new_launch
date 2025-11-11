@@ -3,8 +3,8 @@
  * Cache automatique + invalidation
  */
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { analyticsApi } from './analyticsApi';
+import { useQuery } from '@tanstack/react-query';
+import { analyticsApi } from '../lib/analyticsApi';
 import type {
   GSCFilters,
   GA4Filters,
@@ -28,63 +28,43 @@ import type {
 // GSC Hooks
 // ============================================================================
 
-export function useGSCDailyMetrics(
-  filters: GSCFilters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GSCDailyMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGSCDailyMetrics(filters: GSCFilters) {
   return useQuery({
     queryKey: ['analytics', 'gsc', 'daily', filters],
     queryFn: () => analyticsApi.gsc.getDailyMetrics(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
-    ...options,
   });
 }
 
-export function useGSCTopPages(
-  filters: GSCFilters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GSCPageMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGSCTopPages(filters: GSCFilters) {
   return useQuery({
     queryKey: ['analytics', 'gsc', 'pages', filters],
     queryFn: () => analyticsApi.gsc.getTopPages(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useGSCTopQueries(
-  filters: GSCFilters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GSCQueryMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGSCTopQueries(filters: GSCFilters) {
   return useQuery({
     queryKey: ['analytics', 'gsc', 'queries', filters],
     queryFn: () => analyticsApi.gsc.getTopQueries(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useGSCByDevice(
-  filters: DateRangeFilter,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GSCDeviceMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGSCByDevice(filters: DateRangeFilter) {
   return useQuery({
     queryKey: ['analytics', 'gsc', 'devices', filters],
     queryFn: () => analyticsApi.gsc.getByDevice(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useGSCByCountry(
-  filters: DateRangeFilter & { limit?: number },
-  options?: Omit<UseQueryOptions<BigQueryResponse<GSCCountryMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGSCByCountry(filters: DateRangeFilter & { limit?: number }) {
   return useQuery({
     queryKey: ['analytics', 'gsc', 'countries', filters],
     queryFn: () => analyticsApi.gsc.getByCountry(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
@@ -92,39 +72,27 @@ export function useGSCByCountry(
 // GA4 Hooks
 // ============================================================================
 
-export function useGA4DailyMetrics(
-  filters: GA4Filters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GA4DailyMetrics>>, 'queryKey' | 'queryFn'>
-) {
+export function useGA4DailyMetrics(filters: GA4Filters) {
   return useQuery({
     queryKey: ['analytics', 'ga4', 'daily', filters],
     queryFn: () => analyticsApi.ga4.getDailyMetrics(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useGA4TopPages(
-  filters: GA4Filters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GA4PageViews>>, 'queryKey' | 'queryFn'>
-) {
+export function useGA4TopPages(filters: GA4Filters) {
   return useQuery({
     queryKey: ['analytics', 'ga4', 'pages', filters],
     queryFn: () => analyticsApi.ga4.getTopPages(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useGA4TrafficSources(
-  filters: GA4Filters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<GA4TrafficSource>>, 'queryKey' | 'queryFn'>
-) {
+export function useGA4TrafficSources(filters: GA4Filters) {
   return useQuery({
     queryKey: ['analytics', 'ga4', 'traffic-sources', filters],
     queryFn: () => analyticsApi.ga4.getTrafficSources(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
@@ -132,39 +100,27 @@ export function useGA4TrafficSources(
 // Web Vitals Hooks
 // ============================================================================
 
-export function useWebVitalsSummary(
-  filters: WebVitalsFilters,
-  options?: Omit<UseQueryOptions<BigQueryResponse<WebVitalsSummary>>, 'queryKey' | 'queryFn'>
-) {
+export function useWebVitalsSummary(filters: WebVitalsFilters) {
   return useQuery({
     queryKey: ['analytics', 'web-vitals', 'summary', filters],
     queryFn: () => analyticsApi.webVitals.getSummary(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useWebVitalsTimeSeries(
-  filters: WebVitalsFilters & { metric_name: string },
-  options?: Omit<UseQueryOptions<BigQueryResponse<WebVitalMetric>>, 'queryKey' | 'queryFn'>
-) {
+export function useWebVitalsTimeSeries(filters: WebVitalsFilters & { metric_name: string }) {
   return useQuery({
     queryKey: ['analytics', 'web-vitals', 'timeseries', filters],
     queryFn: () => analyticsApi.webVitals.getTimeSeries(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
-export function useWebVitalsWorstPages(
-  filters: WebVitalsFilters & { metric_name: string },
-  options?: Omit<UseQueryOptions<BigQueryResponse<WebVitalMetric>>, 'queryKey' | 'queryFn'>
-) {
+export function useWebVitalsWorstPages(filters: WebVitalsFilters & { metric_name: string }) {
   return useQuery({
     queryKey: ['analytics', 'web-vitals', 'worst-pages', filters],
     queryFn: () => analyticsApi.webVitals.getWorstPages(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 
@@ -172,15 +128,11 @@ export function useWebVitalsWorstPages(
 // Dashboard Summary Hook
 // ============================================================================
 
-export function useDashboardSummary(
-  filters: DateRangeFilter,
-  options?: Omit<UseQueryOptions<DashboardSummary>, 'queryKey' | 'queryFn'>
-) {
+export function useDashboardSummary(filters: DateRangeFilter) {
   return useQuery({
     queryKey: ['analytics', 'dashboard', filters],
     queryFn: () => analyticsApi.getDashboardSummary(filters),
     staleTime: 5 * 60 * 1000,
-    ...options,
   });
 }
 

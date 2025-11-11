@@ -37,12 +37,10 @@ export async function sendEmail(data: {
     // Log success to database
     const emailLog = await prisma.emailLog.create({
       data: {
-        type: (data.type as any) || 'OTHER',
-        sentById: data.userId,
-        recipientEmail: data.to,
+        type: (data.type as any) || 'CONTACT_EXCHANGE',
+        recipient: data.to,
         subject: data.subject,
         bodyHtml: data.html,
-        bodyText: data.text || stripHtml(data.html),
         status: 'SENT',
         sentAt: new Date(),
         folderId: data.folderId || null,
@@ -60,12 +58,10 @@ export async function sendEmail(data: {
     // Log failure to database
     await prisma.emailLog.create({
       data: {
-        type: (data.type as any) || 'OTHER',
-        sentById: data.userId,
-        recipientEmail: data.to,
+        type: (data.type as any) || 'CONTACT_EXCHANGE',
+        recipient: data.to,
         subject: data.subject,
         bodyHtml: data.html,
-        bodyText: data.text,
         status: 'FAILED',
         folderId: data.folderId || null,
       },

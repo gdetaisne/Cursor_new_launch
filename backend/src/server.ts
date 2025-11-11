@@ -2,7 +2,7 @@ import { createApp } from './app.js';
 import { prisma } from './db/client.js';
 import { initializeBigQueryService } from './services/bigquery/index.js';
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 // Initialize BigQuery service (skip if credentials not available)
 try {

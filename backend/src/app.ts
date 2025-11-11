@@ -19,7 +19,7 @@ export function createApp(): Express {
   // CORS
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+      origin: process.env.CORS_ORIGIN || 'http://localhost:5000',
       credentials: true,
     })
   );

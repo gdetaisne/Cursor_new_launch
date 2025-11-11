@@ -172,6 +172,7 @@ model Folder {
   booking           Booking?
   top3Selections    Top3Selection[]  // Historique top 3 présentés
   emailLogs         EmailLog[]
+  emailDrafts       EmailDraft[]
   
   @@index([status, createdAt])
   @@index([clientId])
@@ -597,6 +598,7 @@ model User {
   // Relations (FK correctes)
   validatedQuotes   Quote[]     @relation("QuoteValidator")  // Quotes validées par cet admin
   sentEmails        EmailLog[]  @relation("SentBy")
+  emailDrafts       EmailDraft[] @relation("DraftAuthor")
   
   @@index([email])
   @@index([role, active])
@@ -659,11 +661,45 @@ model EmailLog {
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
   
+  // Relations inverses
+  draftReplies      EmailDraft[]  @relation("EmailReplies")
+  
   @@index([type, status])
   @@index([folderId])
   @@index([moverId])
   @@index([recipient])
   @@index([sentAt])  // Rapports emails par période
+}
+
+model EmailDraft {
+  id            String    @id @default(uuid())
+  
+  // Destinataires
+  to            String[]  // ["email1@example.com", "email2@example.com"]
+  cc            String[]  @default([])
+  bcc           String[]  @default([])
+  
+  // Contenu
+  subject       String
+  bodyHtml      String    @db.Text
+  
+  // Relations
+  authorId      String?
+  author        User?     @relation("DraftAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  
+  folderId      String?
+  folder        Folder?   @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  
+  // Email parent (si réponse)
+  inReplyToId   String?
+  inReplyTo     EmailLog? @relation("EmailReplies", fields: [inReplyToId], references: [id], onDelete: SetNull)
+  
+  // Métadonnées
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([authorId])
+  @@index([folderId])
 }
 
 enum EmailType {

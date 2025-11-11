@@ -5,7 +5,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4000',
   headers: {
     'Content-Type': 'application/json',
     'x-user-id': import.meta.env.VITE_USER_ID || 'dev-admin-123',
@@ -48,4 +48,5 @@ api.interceptors.response.use(
 );
 
 export default api;
+export { api }; // Named export for analyticsApi
 

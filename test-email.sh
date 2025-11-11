@@ -4,7 +4,7 @@ echo "🧪 Test envoi email via API Moverz"
 echo "=================================="
 echo ""
 
-curl -X POST http://localhost:3001/api/emails/send \
+curl -X POST http://localhost:4000/api/emails/send \
   -H "Content-Type: application/json" \
   -H "x-user-id: admin" \
   -d '{

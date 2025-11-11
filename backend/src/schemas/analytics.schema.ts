@@ -40,6 +40,7 @@ export const dateRangeSchema = z.object({
 export const gscFiltersSchema = z.object({
   ...dateRangeSchema.shape,
   ...paginationSchema.shape,
+  domain: z.string().optional(), // Ex: demenagerpascher.fr
   device: z.enum(['DESKTOP', 'MOBILE', 'TABLET']).optional(),
   country: z.string().length(2).optional(), // Code ISO 2 lettres
   page: z.string().url().optional(),

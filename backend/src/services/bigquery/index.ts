@@ -69,6 +69,7 @@ export async function getGSCDailyMetrics(
     endDate: filters.endDate,
     limit: filters.limit ?? 100,
     offset: filters.offset ?? 0,
+    ...(filters.domain && { domain: filters.domain }),
   };
 
   const result = await bigQueryClient.query<GSCDailyMetrics>(
@@ -94,8 +95,7 @@ export async function getGSCTopPages(
     endDate: filters.endDate,
     limit: filters.limit ?? 100,
     offset: filters.offset ?? 0,
-    ...(filters.device && { device: filters.device }),
-    ...(filters.country && { country: filters.country }),
+    ...(filters.domain && { domain: filters.domain }),
   };
 
   const result = await bigQueryClient.query<GSCPageMetrics>(
@@ -121,8 +121,7 @@ export async function getGSCTopQueries(
     endDate: filters.endDate,
     limit: filters.limit ?? 100,
     offset: filters.offset ?? 0,
-    ...(filters.device && { device: filters.device }),
-    ...(filters.country && { country: filters.country }),
+    ...(filters.domain && { domain: filters.domain }),
   };
 
   const result = await bigQueryClient.query<GSCQueryMetrics>(

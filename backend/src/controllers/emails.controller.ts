@@ -29,7 +29,7 @@ export async function listEmailsHandler(req: Request, res: Response) {
   const { page, limit, skip } = getPaginationParams(req);
   const status = req.query.status as string;
 
-  const where: any = { deletedAt: null };
+  const where: any = {};
   if (status) {
     where.status = status;
   }
@@ -38,11 +38,12 @@ export async function listEmailsHandler(req: Request, res: Response) {
     prisma.emailLog.findMany({
       where,
       include: {
-        sentBy: {
+        sentByUser: {
           select: {
             id: true,
             email: true,
-            name: true,
+            firstName: true,
+            lastName: true,
           },
         },
         folder: {

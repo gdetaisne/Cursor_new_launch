@@ -20,7 +20,10 @@ export const gscQueries = {
    * Métriques GSC agrégées par jour
    */
   dailyMetrics: (filters: GSCFilters) => {
-    const { startDate, endDate, limit = 100, offset = 0 } = filters;
+    const { startDate, endDate, domain, limit = 100, offset = 0 } = filters;
+    
+    let whereClause = 'WHERE date BETWEEN @startDate AND @endDate';
+    if (domain) whereClause += ' AND domain = @domain';
     
     return `
       SELECT 
@@ -29,8 +32,8 @@ export const gscQueries = {
         SUM(impressions) as impressions,
         SAFE_DIVIDE(SUM(clicks), SUM(impressions)) as ctr,
         AVG(position) as position
-      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_aggregated\`
-      WHERE date BETWEEN @startDate AND @endDate
+      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_metrics\`
+      ${whereClause}
       GROUP BY date
       ORDER BY date DESC
       LIMIT @limit
@@ -42,11 +45,10 @@ export const gscQueries = {
    * Top pages par clicks
    */
   topPages: (filters: GSCFilters) => {
-    const { startDate, endDate, limit = 100, offset = 0, device, country } = filters;
+    const { startDate, endDate, domain, limit = 100, offset = 0 } = filters;
     
     let whereClause = 'WHERE date BETWEEN @startDate AND @endDate';
-    if (device) whereClause += ' AND device = @device';
-    if (country) whereClause += ' AND country = @country';
+    if (domain) whereClause += ' AND domain = @domain';
     
     return `
       SELECT 
@@ -55,7 +57,7 @@ export const gscQueries = {
         SUM(impressions) as impressions,
         SAFE_DIVIDE(SUM(clicks), SUM(impressions)) as ctr,
         AVG(position) as position
-      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_aggregated\`
+      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_metrics\`
       ${whereClause}
       GROUP BY page
       ORDER BY clicks DESC
@@ -68,11 +70,10 @@ export const gscQueries = {
    * Top queries par impressions
    */
   topQueries: (filters: GSCFilters) => {
-    const { startDate, endDate, limit = 100, offset = 0, device, country } = filters;
+    const { startDate, endDate, domain, limit = 100, offset = 0 } = filters;
     
     let whereClause = 'WHERE date BETWEEN @startDate AND @endDate';
-    if (device) whereClause += ' AND device = @device';
-    if (country) whereClause += ' AND country = @country';
+    if (domain) whereClause += ' AND domain = @domain';
     
     return `
       SELECT 
@@ -81,7 +82,7 @@ export const gscQueries = {
         SUM(impressions) as impressions,
         SAFE_DIVIDE(SUM(clicks), SUM(impressions)) as ctr,
         AVG(position) as position
-      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_aggregated\`
+      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_metrics\`
       ${whereClause}
       GROUP BY query
       ORDER BY impressions DESC
@@ -91,44 +92,17 @@ export const gscQueries = {
   },
 
   /**
-   * Répartition par device
+   * Répartition par device (NON DISPONIBLE - table n'a pas de colonne device)
    */
   byDevice: (filters: DateRangeFilter) => {
-    const { startDate, endDate } = filters;
-    
-    return `
-      SELECT 
-        device,
-        SUM(clicks) as clicks,
-        SUM(impressions) as impressions,
-        SAFE_DIVIDE(SUM(clicks), SUM(impressions)) as ctr,
-        AVG(position) as position
-      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_aggregated\`
-      WHERE date BETWEEN @startDate AND @endDate
-      GROUP BY device
-      ORDER BY clicks DESC
-    `;
+    throw new Error('Device breakdown not available in current schema');
   },
 
   /**
-   * Répartition par pays
+   * Répartition par pays (NON DISPONIBLE - table n'a pas de colonne country)
    */
   byCountry: (filters: DateRangeFilter & { limit?: number }) => {
-    const { startDate, endDate, limit = 20 } = filters;
-    
-    return `
-      SELECT 
-        country,
-        SUM(clicks) as clicks,
-        SUM(impressions) as impressions,
-        SAFE_DIVIDE(SUM(clicks), SUM(impressions)) as ctr,
-        AVG(position) as position
-      FROM \`${process.env.GCP_PROJECT_ID}.${process.env.BQ_DATASET}.gsc_daily_aggregated\`
-      WHERE date BETWEEN @startDate AND @endDate
-      GROUP BY country
-      ORDER BY clicks DESC
-      LIMIT @limit
-    `;
+    throw new Error('Country breakdown not available in current schema');
   },
 };
 
